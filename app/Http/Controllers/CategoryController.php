@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -37,8 +38,11 @@ class CategoryController extends Controller
         $category -> save();
         //ITT NEM KELL KÜLÖN A CARBON*/
 
-        //$data = array();
-        //$data['category_name'] = $request->category_name;
+        $data = array();
+        $data['category_name'] = $request->category_name;
+        $data['user_id'] = Auth::user()->id;
+        $data['created_at'] = Carbon::now();
+        DB::table('categories')->insert($data);
 
         return Redirect()->back()->with('success','Category inserted successfully');
     }
