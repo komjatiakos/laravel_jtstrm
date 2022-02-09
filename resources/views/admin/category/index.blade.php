@@ -8,7 +8,16 @@
     <div class="py-12">
         <div class="container">
             <div class="row">
-                <table class="table">
+              <div class="col-md-8">
+                <div class="card">
+                  @if(session('success'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Holy guacamole! {{ session('success') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  @endif
+                  <div class="card-header">All Category</div>
+                  <table class="table">
                     <thead>
                       <tr>
                         <th scope="col">Serial Number</th>
@@ -28,6 +37,27 @@
                       </tr>
                     </tbody>
                   </table>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-header">Add Category</div>
+                    <div class="card-body">
+                      <form action="{{ route('store.category') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                          <label for="categoryInput">Category name</label>
+                          <input type="text" name="category_name" class="form-control" 
+                          id="categoryInput">
+                          @error('category_name')
+                            <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top:1%">Create</button>
+                      </form>
+                    </div>
+                </div>
+              </div>
             </div>
         </div>
     </div>
