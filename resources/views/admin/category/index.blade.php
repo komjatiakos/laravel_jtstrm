@@ -20,21 +20,25 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">Serial Number</th>
-                        <th scope="col">User Name</th>
-                        <th scope="col">User Email</th>
+                        <th scope="col">Row Number</th>
+                        <th scope="col">Category name</th>
+                        <th scope="col">User name</th>
                         <th scope="col">Created At</th>
                         <th scope="col">Created At Time Stamp</th>
                       </tr>
                     </thead>
                     <tbody>
+                      @php($i=1)
+                      @foreach ($categories as $category)
                       <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th scope="row">{{ $i++ }}</th>
+                        <td>{{ $category->category_name }}</td>
+                        <td>{{ $category->user_id }}</td>
+                        <td>{{ $category->created_at }}</td>
+                        <td>{{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
                       </tr>
+
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
