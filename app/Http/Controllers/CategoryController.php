@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public $table = "categories";
     public function AllCat(){
-        $categories = Category::latest()->get();
+        //$categories = Category::latest()->get(); //Itt is lehet paginate(x)
+        $categories =DB::table('categories')->latest()->paginate(10);
         return view('admin.category.index',compact('categories'));
     }
 
