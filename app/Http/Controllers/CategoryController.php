@@ -12,7 +12,13 @@ class CategoryController extends Controller
 {
     public function AllCat(){
         //$categories = Category::latest()->get(); //Itt is lehet paginate(x)
-        $categories =DB::table('categories')->latest()->paginate(10);
+        //$categories =DB::table('categories')->latest()->paginate(10); kapcsolat nélkül
+        $categories =DB::table('categories')
+                ->join('users','categories.user_id','users.id')
+                ->select('categories.*','users.name')
+                ->latest()
+                ->paginate(10);
+
         return view('admin.category.index',compact('categories'));
     }
 
