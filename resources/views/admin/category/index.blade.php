@@ -2,6 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <b>All Category</b>
+            <b>{{ date('H:i:s') }}</b>
         </h2>
     </x-slot>
 
@@ -24,7 +25,8 @@
                         <th scope="col">Category name</th>
                         <th scope="col">User name</th>
                         <th scope="col">Created At</th>
-                        <th scope="col">Created At Time Stamp</th>
+                        <!-- <th scope="col">Created At Time Stamp</th> -->
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -35,7 +37,11 @@
                         <td>{{ $category->category_name }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->created_at }}</td>
-                        <td>{{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
+                        <!-- <td>{{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td> -->
+                        <td>
+                          <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
+                          <a href="{{ url('category/delete/'.$category->id) }}" class="btn btn-danger">Delete</a>
+                        </td>
                       </tr>
 
                       @endforeach
