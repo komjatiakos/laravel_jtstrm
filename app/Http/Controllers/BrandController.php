@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 use Illuminate\Support\Carbon;
+use Image;
 
 class BrandController extends Controller
 {
@@ -25,12 +26,18 @@ class BrandController extends Controller
             ]
         );
         $brand_image = $request->file('brand_image');
+
+        $generated_name = hexdec(uniqid()) . '.' . $brand_image->getClientOriginalExtension();
+        Image::make($brand_image)->resize(300,200)->save('img/brand/'. $generated_name);
+        $last_image = 'img/brand/'.$generated_name;
+
+        /*
         $generated_name = hexdec(uniqid());
         $image_ext = strtolower($brand_image->getClientOriginalExtension());
         $image_name = $generated_name .'.'.$image_ext;
         $up_location = 'img/brand/';
         $last_image = $up_location. $image_name;
-        $brand_image->move($up_location,$image_name);
+        $brand_image->move($up_location,$image_name);*/
 
         Brand::insert([
             'brand_name' => $request->brand_name,
@@ -62,12 +69,19 @@ class BrandController extends Controller
         $brand_image = $request->file('brand_image');
 
         if($brand_image){
+            /*
             $generated_name = hexdec(uniqid());
             $image_ext = strtolower($brand_image->getClientOriginalExtension());
             $image_name = $generated_name .'.'.$image_ext;
             $up_location = 'img/brand/';
             $last_image = $up_location. $image_name;
             $brand_image->move($up_location,$image_name);
+            */
+
+            $generated_name = hexdec(uniqid()) . '.' . $brand_image->getClientOriginalExtension();
+            Image::make($brand_image)->resize(300,200)->save('img/brand/'. $generated_name);
+            $last_image = 'img/brand/'.$generated_name;
+            
     
     
             unlink($old_image);
