@@ -9,11 +9,18 @@
         <div class="container">
             <div class="row">
               <div class="col-md-8">
+                @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Holy guacamole! {{ session('success') }}</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <div class="card">
                   <div class="card-header">Edit Brand</div>
                     <div class="card-body">
                       <form action="{{ url('brand/update/'.$brands->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="old_image" value="{{ $brands->brand_image }}"/>
                         <div class="form-group">
                           <label for="brandNameInput">Update Brand Name</label>
                           <input type="text" name="brand_name" class="form-control" 
