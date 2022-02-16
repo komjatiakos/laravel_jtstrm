@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\MultiPicController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,3 +35,7 @@ Route::post('/brand/add', [BrandController::class,'AddBrand'])->name('store.bran
 Route::get('/brand/edit/{id}', [BrandController::class,'EditBrand']);
 Route::post('/brand/update/{id}', [BrandController::class,'UpdateBrand']);
 Route::get('/brand/delete/{id}', [BrandController::class,'DeleteBrand']);
+
+
+//MultiImage route
+Route::get('/multi/picture', [MultiPicController::class,'Multipic'])->name('all.multi.picture');
