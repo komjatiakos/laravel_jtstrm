@@ -9,6 +9,11 @@ use Image;
 
 class BrandController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     public function AllBrand(){
         $brands = Brand::latest()->paginate(5);
         return view('admin.brand.index',compact('brands'));

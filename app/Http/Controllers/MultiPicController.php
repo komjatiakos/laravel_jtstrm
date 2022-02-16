@@ -9,6 +9,11 @@ use Image;
 
 class MultiPicController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     public function Multipic(){
         $images = Multipic::all();
         return view('admin.multipic.index',compact('images'));
