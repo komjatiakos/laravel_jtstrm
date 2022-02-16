@@ -13,24 +13,13 @@ class MultiPicController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    
+
     public function Multipic(){
         $images = Multipic::all();
         return view('admin.multipic.index',compact('images'));
     }
 
     public function MultiPicAdd(Request $request){
-        /*$valdidateData = $request->validate(
-            [
-                'brand_name' => 'required|unique:brands|min:4',
-                'brand_image' => 'required|mimes:jpg,jpeg,png',
-            ],
-            [
-                'brand_name.required' => 'Please fill the brand name input field.',
-                'brand_name.min' => 'Brand name must be over 4 characters.',
-            ]
-        );*/
-
         $image = $request->file('image');
         foreach ($image as $multi_image) {
             $generated_name = hexdec(uniqid()) . '.' . $multi_image->getClientOriginalExtension();
