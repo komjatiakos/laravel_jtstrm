@@ -19,8 +19,8 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     //$users = User::all(); //ORM
 
-    $users = DB::table('users')->get();
-    return view('dashboard',compact('users'));
+    //$users = DB::table('users')->get();
+    return view('admin.index'); //,compact('users')
 })->name('dashboard');
 
 Route::get('/category/all', [CategoryController::class,'AllCat'])->name('all.category');
