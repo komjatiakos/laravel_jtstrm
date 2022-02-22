@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\MultiPicController;
+use App\Http\Controllers\UsersController;
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -45,3 +46,6 @@ Route::get('/brand/delete/{id}', [BrandController::class,'DeleteBrand']);
 //MultiImage route
 Route::get('/multi/picture', [MultiPicController::class,'Multipic'])->name('all.multi.picture');
 Route::post('/multi/add', [MultiPicController::class,'MultiPicAdd'])->name('store.image');
+
+
+Route::get('/user/logout', [UsersController::class,'Logout'])->name('user.logout');
