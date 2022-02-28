@@ -135,8 +135,8 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="{{  asset('backend/assets/img/user/user.png')  }}" class="user-image" alt="User Image" />
-                      <span class="d-none d-lg-inline-block">Abdus Salam</span>
+                      <img src="{{  Auth::user()->profile_photo_url  }}" class="user-image" alt="User Image" />
+                      <span class="d-none d-lg-inline-block">{{ Auth::user()->email }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
